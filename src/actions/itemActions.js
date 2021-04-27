@@ -2,38 +2,26 @@ import actionTypes from '../constants/actionTypes';
 import runtimeEnv from '@mars/heroku-js-runtime-env'
 
 
-function moviesFetched(movies) {
+function itemsFetched(items) {
     return {
-        type: actionTypes.FETCH_MOVIES,
-        movies: movies
+        type: actionTypes.FETCH_ITEMS,
+        items: items
     }
 }
 
-function movieFetched(movie) {
+function itemFetched(item) {
     return {
-        type: actionTypes.FETCH_MOVIE,
-        selectedMovie: movie
+        type: actionTypes.FETCH_ITEM,
+        selectedItem: item
     }
 }
 
-function movieSet(movie) {
-    return {
-        type: actionTypes.SET_MOVIE,
-        selectedMovie: movie
-    }
-}
-
-export function setMovie(movie) {
-    return dispatch => {
-        dispatch(movieSet(movie));
-    }
-}
-
-export function fetchMovie(movieId) {
+/* WIP, this route will display one item that is clicked on */
+export function fetchItem(item_id) {
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/movies/${movieId}?reviews=true`, {
-            method: 'GET',
+        return fetch(`${env.REACT_APP_API_URL}/item/${item_id}`, {
+            method: 'POST', // or GET?
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -46,16 +34,17 @@ export function fetchMovie(movieId) {
             }
             return response.json()
         }).then((res) => {
-            dispatch(movieFetched(res));
+            dispatch(itemFetched(res));
         }).catch((e) => console.log(e));
     }
 }
 
-export function fetchMovies() {
+/* WIP, this route will display all the items in the shop */
+export function fetchItems() {
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
-            method: 'GET',
+        return fetch(`${env.REACT_APP_API_URL}/items`, {
+            method: 'POST', // or GET?
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -68,7 +57,7 @@ export function fetchMovies() {
             }
             return response.json()
         }).then((res) => {
-            dispatch(moviesFetched(res));
+            dispatch(itemsFetched(res));
         }).catch((e) => console.log(e));
     }
 }

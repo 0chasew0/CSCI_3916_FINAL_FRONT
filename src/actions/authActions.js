@@ -1,6 +1,8 @@
 import actionTypes from '../constants/actionTypes';
 import runtimeEnv from '@mars/heroku-js-runtime-env'
 
+/* We shouldn't need to change this file */
+
 function userLoggedIn(username) {
     return {
         type: actionTypes.USER_LOGGEDIN,

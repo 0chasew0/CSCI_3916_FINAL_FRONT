@@ -9,10 +9,10 @@ function transaction(transaction) {
 }
 
 /* transaction */
-export function Trans() {
+export function Trans(item_id) {
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/transaction`, {
+        return fetch(`${env.REACT_APP_API_URL}/transaction/${item_id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

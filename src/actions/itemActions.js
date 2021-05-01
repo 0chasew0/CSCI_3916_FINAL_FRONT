@@ -16,12 +16,25 @@ function itemFetched(item) {
     }
 }
 
+function itemSet(item) {
+    return {
+        type: actionTypes.SET_ITEM,
+        selectedItem: item
+    }
+}
+
+export function setItem(item) {
+    return dispatch => {
+        dispatch(itemSet(item));
+    }
+}
+
 
 /* this route will display one item that is clicked on */
-export function fetchItem(_id) {
+export function fetchItem(item_id) {
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/item/${_id}`, {
+        return fetch(`${env.REACT_APP_API_URL}/item/${item_id}`, {
             method: 'POST', // or GET?
             headers: {
                 'Accept': 'application/json',

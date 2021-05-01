@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
+import { Trans } from "../actions/transactionActions";
 import { fetchItem } from "../actions/itemActions";
 import {connect} from 'react-redux';
 import {Card, Button } from 'react-bootstrap';
-import { Image } from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
-/* this file is for displaying one item when it is clicked on */
+/* this file is for checking out/completing a transaction */
 
-class ItemDetail extends Component {
+class Transaction extends Component {
 
     componentDidMount() {
         const {dispatch} = this.props;
-        if (this.props.selectedItem == null) {
-            dispatch(fetchItem(this.props.itemId));
-        }
+        
+        dispatch(Trans(this.props.itemId));
+        
     }
 
     render() {
@@ -25,15 +25,15 @@ class ItemDetail extends Component {
             return (
                 
                 <Card className ="text-center">
-                    <Card.Header>Item Detail</Card.Header>
+                    <Card.Header>Transaction Detail</Card.Header>
                     <Card.Body>
-                        <Image className="image" src={this.props.selectedItem.imageUrl} thumbnail />
+                        
                         <Card.Title>{this.props.selectedItem.item_name}</Card.Title>
 
                         <Card.Text>
-                            {this.props.selectedItem.price}
+                            {this.props.selectedItem.id}
                         </Card.Text>
-                        <Link to={'/transaction/'+this.props.selectedItem.item_id}>
+                        <Link to='/transaction'>
                             <Button variant="primary">Buy</Button>
                         </Link>
                         
@@ -55,5 +55,5 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(ItemDetail);
+export default connect(mapStateToProps)(Transaction);
 

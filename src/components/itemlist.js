@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { fetchItems } from "../actions/itemActions";
-import { fetchItem } from "../actions/itemActions";
+import { fetchItems, setItem } from "../actions/itemActions";
 import {connect} from 'react-redux';
 import {Image, Nav} from 'react-bootstrap';
 import { Carousel } from 'react-bootstrap';
@@ -19,26 +18,26 @@ class ItemList extends Component {
 
     handleSelect(selectedIndex, e) {
         const {dispatch} = this.props;
-        dispatch(fetchItems(this.props.items[selectedIndex]));
+        dispatch(setItem(this.props.items[selectedIndex]));
     }
 
     handleClick = (item) => {
         const {dispatch} = this.props;
-        dispatch(fetchItem(item));
+        dispatch(setItem(item));
     }
 
     render() {
-        const ItemListCarousel = ({ListItems}) => {
-            if (!ListItems) {
+        const ItemListCarousel = ({itemList}) => {
+            if (!itemList) {
                 return <div>Loading....</div>
             }
 
             return (
                 <Carousel onSelect={this.handleSelect}>
-                    {ListItems.map((item) =>
-                        <Carousel.Item key={item._id}>
+                    {itemList.map((item) =>
+                        <Carousel.Item key={item.item_id}>
                             <div>
-                                <LinkContainer to={'/item/'+item._id} onClick={()=>this.handleClick(item)}>
+                                <LinkContainer to={'/item/'+item.item_id} onClick={()=>this.handleClick(item)}>
                                     <Nav.Link><Image className="image" src={item.imageUrl} thumbnail /></Nav.Link>
                                 </LinkContainer>
                             </div>

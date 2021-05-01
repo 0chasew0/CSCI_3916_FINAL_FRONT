@@ -16,8 +16,11 @@ const itemReducer = (state = initialState, action) => {
             case constants.FETCH_ITEM:
                   updated['selectedItem'] = action.selectedItem;
                   return updated;
-            case constants.SAVE_ITEM:
-                  updated['items'] = action.items
+            case constants.SET_ITEM:
+                  updated['selectedItem'] = action.selectedItem;
+                  return updated;
+            case constants.POST_TRANSACTION:
+                  updated['selectedItem'] = action.selectedItem;
                   return updated;
             default:
                   return state;

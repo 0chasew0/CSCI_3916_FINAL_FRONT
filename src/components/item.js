@@ -9,7 +9,7 @@ import ItemDetail from "./itemdetail"
 function Item(props) {
     const [selectedItem] = useState(props.selectedItem);
     const params = useParams();
-    const itemId = params._id;
+    const itemId = params.item_id;
     //console.log(movieId);
     const dispatch = useDispatch();
     if (selectedItem == null) {

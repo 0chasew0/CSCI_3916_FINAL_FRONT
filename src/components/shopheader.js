@@ -22,9 +22,6 @@ class ShopHeader extends Component {
                             <LinkContainer to="/item">
                                 <Nav.Link disabled={!this.props.loggedIn}>Item List</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to={'/item/:item_id' + (this.props.selectedMovie ? this.props.selectedMovie._id : '')}>
-                                <Nav.Link disabled={!this.props.loggedIn}>Item Detail</Nav.Link>
-                            </LinkContainer>
                             <LinkContainer to="/signin">
                                 <Nav.Link>{this.props.loggedIn ? <button onClick={this.logout.bind(this)}>Logout</button> : 'Login'}</Nav.Link>
                             </LinkContainer>

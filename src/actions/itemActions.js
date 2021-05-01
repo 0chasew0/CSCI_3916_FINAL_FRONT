@@ -16,11 +16,12 @@ function itemFetched(item) {
     }
 }
 
-/* WIP, this route will display one item that is clicked on */
-export function fetchItem(item_id) {
+
+/* this route will display one item that is clicked on */
+export function fetchItem(_id) {
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/item/${item_id}`, {
+        return fetch(`${env.REACT_APP_API_URL}/item/${_id}`, {
             method: 'POST', // or GET?
             headers: {
                 'Accept': 'application/json',
@@ -39,12 +40,12 @@ export function fetchItem(item_id) {
     }
 }
 
-/* WIP, this route will display all the items in the shop */
+/* this route will display all the items in the shop */
 export function fetchItems() {
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/items`, {
-            method: 'POST', // or GET?
+        return fetch(`${env.REACT_APP_API_URL}/item`, {
+            method: 'GET', 
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

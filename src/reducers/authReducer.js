@@ -1,5 +1,7 @@
 import constants from '../constants/actionTypes'
 
+/* We shouldn't need to change this file */
+
 let initialState = {
     loggedIn: localStorage.getItem('token') ? true : false,
     username: localStorage.getItem('username') ? localStorage.getItem('username') : ''

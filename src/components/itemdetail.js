@@ -5,6 +5,8 @@ import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
 
+/* this file is for displaying one item when it is clicked on */
+
 class MovieDetail extends Component {
 
     componentDidMount() {

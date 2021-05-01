@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
-import { fetchMovie } from "../actions/movieActions";
-import MovieDetail from "./itemdetail"
+import { fetchItem } from "../actions/itemActions";
+import ItemDetail from "./itemdetail"
 
 // support routing
 
-function Movie(props) {
-    const [selectedMovie] = useState(props.selectedMovie);
+function Item(props) {
+    const [selectedItem] = useState(props.selectedItem);
     const params = useParams();
-    const movieId = params.movieId;
-    console.log(movieId);
+    const itemId = params._id;
+    //console.log(movieId);
     const dispatch = useDispatch();
-    if (selectedMovie == null) {
-        dispatch(fetchMovie(movieId));
+    if (selectedItem == null) {
+        dispatch(fetchItem(itemId));
     }
 
-    return (<MovieDetail movieId={movieId} />)
+    return (<ItemDetail itemId={itemId} />)
 }
 
-export default Movie;
+export default Item;

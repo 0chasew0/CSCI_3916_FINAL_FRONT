@@ -1,50 +1,39 @@
 import React, { Component } from 'react';
-import { fetchMovie } from "../actions/movieActions";
+import { fetchItem } from "../actions/itemActions";
 import {connect} from 'react-redux';
-import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
-import { BsStarFill } from 'react-icons/bs'
+import {Card, Button } from 'react-bootstrap';
 import { Image } from 'react-bootstrap';
 
 /* this file is for displaying one item when it is clicked on */
 
-class MovieDetail extends Component {
+class ItemDetail extends Component {
 
     componentDidMount() {
         const {dispatch} = this.props;
-        if (this.props.selectedMovie == null) {
-            dispatch(fetchMovie(this.props.movieId));
+        if (this.props.selectedItem == null) {
+            dispatch(fetchItem(this.props.itemId));
         }
     }
 
     render() {
         const DetailInfo = () => {
-            if (!this.props.selectedMovie) {
+            if (!this.props.selectedItem) {
                 return <div>Loading....</div>
             }
 
             return (
-                <Card>
-                    <Card.Header>Movie Detail</Card.Header>
+                
+                <Card className ="text-center">
+                    <Card.Header>Item Detail</Card.Header>
                     <Card.Body>
-                        <Image className="image" src={this.props.selectedMovie.imageUrl} thumbnail />
-                    </Card.Body>
-                    <ListGroup>
-                        <ListGroupItem>{this.props.selectedMovie.title}</ListGroupItem>
-                        <ListGroupItem>
-                            {this.props.selectedMovie.actors.map((actor, i) =>
-                                <p key={i}>
-                                    <b>{actor.actorName}</b> {actor.characterName}
-                                </p>)}
-                        </ListGroupItem>
-                        <ListGroupItem><h4><BsStarFill/> {this.props.selectedMovie.avgRating}</h4></ListGroupItem>
-                    </ListGroup>
-                    <Card.Body>
-                        {this.props.selectedMovie.reviews.map((review, i) =>
-                            <p key={i}>
-                                <b>{review.username}</b>&nbsp; {review.review}
-                                &nbsp;  <BsStarFill /> {review.rating}
-                            </p>
-                        )}
+                        <Image className="image" src={this.props.selectedItem.imageUrl} thumbnail />
+                        <Card.Title>{this.props.selectedItem.item_name}</Card.Title>
+
+                        <Card.Text>
+                            {this.props.selectedItem.price}
+                        </Card.Text>
+                        <Button variant="primary">Buy</Button>
+                        
                     </Card.Body>
                 </Card>
             )
@@ -58,9 +47,9 @@ class MovieDetail extends Component {
 
 const mapStateToProps = state => {
     return {
-        selectedMovie: state.movie.selectedMovie
+        selectedItem: state.item.selectedItem
     }
 }
 
-export default connect(mapStateToProps)(MovieDetail);
+export default connect(mapStateToProps)(ItemDetail);
 

@@ -1,10 +1,9 @@
 import constants from '../constants/actionTypes'
 
-/* We shouldn't need to change this file */
-
 let initialState = {
     loggedIn: localStorage.getItem('token') ? true : false,
-    username: localStorage.getItem('username') ? localStorage.getItem('username') : ''
+    username: localStorage.getItem('username') ? localStorage.getItem('username') : '',
+    countryCode: 'US'
 }
 
 const authReducer = (state = initialState, action) => {
@@ -15,11 +14,13 @@ const authReducer = (state = initialState, action) => {
         case constants.USER_LOGGEDIN:
             updated['loggedIn'] = true;
             updated['username'] = action.username;
+            updated['countryCode'] = 'US';
             return updated;
 
         case constants.USER_LOGOUT:
             updated['loggedIn'] = false;
             updated['username'] = '';
+            updated['countryCode'] = '';
             return updated;
 
         default:

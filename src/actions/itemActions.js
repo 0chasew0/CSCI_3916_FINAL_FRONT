@@ -12,7 +12,7 @@ function itemsFetched(items) {
 function itemFetched(item) {
     return {
         type: actionTypes.FETCH_ITEM,
-        selectedItem: item
+        selectedItem: item,
     }
 }
 
@@ -35,7 +35,7 @@ export function fetchItem(item_id) {
     const env = runtimeEnv();
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/item/${item_id}`, {
-            method: 'POST', // or GET?
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

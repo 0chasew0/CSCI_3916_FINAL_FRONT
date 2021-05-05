@@ -1,18 +1,18 @@
 import actionTypes from '../constants/actionTypes';
 import runtimeEnv from '@mars/heroku-js-runtime-env'
 
-function transaction(transaction) {
+function transaction(res) {
     return {
         type: actionTypes.POST_TRANSACTION,
-        selectedItem: transaction
+        success: res.statusText
     }
 }
 
 /* transaction */
-export function Trans(item_id) {
+export function Trans() {
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/transaction/${item_id}`, {
+        return fetch(`${env.REACT_APP_API_URL}/transaction`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

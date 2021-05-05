@@ -46,6 +46,7 @@ class Login extends Component {
                 </Form.Group>
                 <Button onClick={this.login}>Sign in</Button>
             </Form>
+
         )
     }
 }

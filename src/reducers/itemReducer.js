@@ -2,7 +2,7 @@ import constants from '../constants/actionTypes'
 
 let initialState = {
       items: [],
-      selectedItem: null
+      selectedItem: null,
 }
 
 const itemReducer = (state = initialState, action) => {

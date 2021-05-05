@@ -1,12 +1,11 @@
 import actionTypes from '../constants/actionTypes';
 import runtimeEnv from '@mars/heroku-js-runtime-env'
 
-/* We shouldn't need to change this file */
-
-function userLoggedIn(username) {
+function userLoggedIn(username, countryCode) {
     return {
         type: actionTypes.USER_LOGGEDIN,
-        username: username
+        username: username,
+        countryCode: countryCode
     }
 }
 
@@ -35,8 +34,9 @@ export function submitLogin(data) {
         }).then((res) => {
             localStorage.setItem('username', data.username);
             localStorage.setItem('token', res.token);
+            localStorage.setItem('countryCode', 'US');
 
-            dispatch(userLoggedIn(data.username));
+            dispatch(userLoggedIn(data.username, 'US'));
         }).catch((e) => console.log(e));
     }
 }
@@ -67,6 +67,7 @@ export function logoutUser() {
     return dispatch => {
         localStorage.removeItem('username');
         localStorage.removeItem('token');
+        localStorage.removeItem('countryCode');
         dispatch(logout())
     }
 }
